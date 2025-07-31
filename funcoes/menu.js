@@ -1,4 +1,19 @@
-function menu() {
+const adicionarMissaoAoGerenciador = require('./adicionar');
+const ListarMissoesCadastradas = require('./listarMissoes');
+const MarcarMissaoComoConcluida = require('./marcar');
+const EditarMissao = require('./editar');
+const FiltrarPorPrioridade = require('./filtrar');
+const RankingDosDestinos = require('./ranking');
+const ListarPorTripulante = require('./listarPorTripulante');
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+})
+
+function menuF() {
     console.log('\n<<<<<<GERENCIADOR DE MISSÕES ESPACIAIS>>>>>');
     console.log('1. Adicionar missão ao gerenciador');
     console.log('2. Listar missões cadastradas');
@@ -13,19 +28,19 @@ function menu() {
     rl.question('Escolha uma opção: ', (opcao) => {
         switch (opcao) {
             case '1':
-                opcao = adicionarMissaoAoGerenciador
-                break;
+                adicionarMissaoAoGerenciador(rl)
+                break
             case '2':
-                ListarMissoesCadastradas
+                ListarMissoesCadastradas(rl)
                 break;
             case '3':
-                EditarMissao
+                EditarMissao(rl)
                 break;
             case '4':
-                MarcarMissaoComoConcluida
+                MarcarMissaoComoConcluida(rl)
                 break;
             case '5':
-                FiltrarPorPrioridade
+                FiltrarPorPrioridade(rl)
                 break;
             case '6':
                 RankingDosDestinos
@@ -34,14 +49,18 @@ function menu() {
                 ListarPorTripulante
                 break;
             case '8':
-                rl.close();
                 console.log('Obrigado por usar o programa Gerenciador de Missões Espaciais. Até mais!!');
+                rl.close();
                 break;
             default:
                 console.log('Opção inválida. Tente novamente.');
-                menu();
+                menuF();
         }
     });
-}
 
-module.exports = menu
+}
+menuF()
+
+module.exports = menuF
+
+

@@ -36,9 +36,7 @@ function adicionarMissaoAoGerenciador(rl) {
                 tripulantesAtuais.push(tripulante)
                 console.log(tripulantesAtuais)
                 rl.question("deseja adicionar outro tripulante? (s/n)", (res) => {
-                if(res.toLowerCase() =='s'){
-                    perguntarTripulantes(rl)
-                } else{
+                if(res.toLowerCase() ==!'s'){
                     const missao = { 
                         nome: nomeAtual,
                         destino: destinoAtual,
@@ -50,6 +48,8 @@ function adicionarMissaoAoGerenciador(rl) {
                     console.log('Missão adicionada com sucesso!');
                     console.log(typeof(menuF))
                     menuF()
+                } else {
+                    perguntarTripulantes(rl)
                 }
                 
                 }
@@ -59,5 +59,6 @@ function adicionarMissaoAoGerenciador(rl) {
                 )}
 
 module.exports = adicionarMissaoAoGerenciador
+
 
 
