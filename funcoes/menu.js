@@ -1,19 +1,14 @@
 const adicionarMissaoAoGerenciador = require('./adicionar');
 const ListarMissoesCadastradas = require('./listarMissoes');
-const MarcarMissaoComoConcluida = require('./marcar');
 const EditarMissao = require('./editar');
+const MarcarMissaoComoConcluida = require('./marcar');
 const FiltrarPorPrioridade = require('./filtrar');
 const RankingDosDestinos = require('./ranking');
 const ListarPorTripulante = require('./listarPorTripulante');
 
-const readline = require('readline');
+let missoes = [];
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
-
-function menuF() {
+function menu(rl) {
     console.log('\n<<<<<<GERENCIADOR DE MISSÕES ESPACIAIS>>>>>');
     console.log('1. Adicionar missão ao gerenciador');
     console.log('2. Listar missões cadastradas');
@@ -28,25 +23,25 @@ function menuF() {
     rl.question('Escolha uma opção: ', (opcao) => {
         switch (opcao) {
             case '1':
-                adicionarMissaoAoGerenciador(rl)
-                break
+                adicionarMissaoAoGerenciador(rl, missoes, menu);
+                break;
             case '2':
-                ListarMissoesCadastradas(rl)
+                ListarMissoesCadastradas(rl, missoes, menu);
                 break;
             case '3':
-                EditarMissao(rl)
+                EditarMissao(rl, missoes, menu);
                 break;
             case '4':
-                MarcarMissaoComoConcluida(rl)
+                MarcarMissaoComoConcluida(rl, missoes, menu);
                 break;
             case '5':
-                FiltrarPorPrioridade(rl)
+                FiltrarPorPrioridade(rl, missoes, menu);
                 break;
             case '6':
-                RankingDosDestinos
+                RankingDosDestinos(rl, missoes, menu);
                 break;
             case '7':
-                ListarPorTripulante
+                ListarPorTripulante(rl, missoes, menu);
                 break;
             case '8':
                 console.log('Obrigado por usar o programa Gerenciador de Missões Espaciais. Até mais!!');
@@ -54,13 +49,9 @@ function menuF() {
                 break;
             default:
                 console.log('Opção inválida. Tente novamente.');
-                menuF();
+                menu(rl);
         }
     });
-
 }
-menuF()
 
-module.exports = menuF
-
-
+module.exports = menu;
