@@ -1,8 +1,8 @@
-function RankingDosDestinos() {
+function RankingDosDestinos(rl, missoes, menu) {
     if (missoes.length === 0) {
         console.log('Nenhuma missão registrada.');
         console.log('\nPressione Enter para retornar ao menu...');
-        return rl.question('', menu);
+        return rl.question('', () => menu(rl));
     }
 
     const destinosContagem = {};
@@ -30,7 +30,7 @@ function RankingDosDestinos() {
     }
 
     console.log('\nPressione Enter para retornar ao menu...');
-    rl.question('', menu);
+    rl.question('', () => menu(rl));
 }
 
 module.exports = RankingDosDestinos
