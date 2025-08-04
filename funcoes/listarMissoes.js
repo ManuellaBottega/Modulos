@@ -1,8 +1,8 @@
-function ListarMissoesCadastradas() {
+function ListarMissoesCadastradas(rl, missoes, menu) {
     if (missoes.length === 0) { 
         console.log('Nenhuma missão cadastrada no gerenciador.');
         console.log('\nPressione Enter para retornar ao menu...');
-        return rl.question('', menu);
+        return rl.question('', () => menu(rl));
     }
 
     console.log('\n=== MISSOES CADASTRADAS ===');
@@ -12,7 +12,7 @@ function ListarMissoesCadastradas() {
     });
 
     console.log('\nPressione Enter para retornar ao menu...');
-    rl.question('', menu);
+    rl.question('', () => menu(rl));
 
 
 }
