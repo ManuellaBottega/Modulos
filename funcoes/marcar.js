@@ -1,8 +1,8 @@
-function MarcarMissaoComoConcluida() {
+function MarcarMissaoComoConcluida(rl, missoes, menu) {
     if (missoes.length === 0) {
       console.log('Nenhuma missão foi adicionada.');
       console.log('\nPressione Enter para voltar ao menu.');
-      return rl.question('', () => menu());
+      return rl.question('', () => menu(rl));
     }
 
     console.log('\n=== Missões ===');
@@ -19,13 +19,13 @@ function MarcarMissaoComoConcluida() {
       if (index < 0 || index >= missoes.length) {
         console.log('Essa missão não existe!');
         console.log('\nPressione Enter para voltar ao menu...');
-        return rl.question('', () => menu());
+        return rl.question('', () => menu(rl));
       } else {
         missoes[index].concluida = true;
 
         console.log('Status editado com sucesso!');
         console.log('\nPressione Enter para voltar ao menu...');
-        rl.question('', () => menu());
+        rl.question('', () => menu(rl));
       }
     });
 }
