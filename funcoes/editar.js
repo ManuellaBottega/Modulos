@@ -1,8 +1,8 @@
-function EditarMissao() {
+function EditarMissao(rl, missoes, menu) {
     if (missoes.length === 0) { 
         console.log('Nenhuma missão cadastrada no gerenciador.');
         console.log('\nPresione Enter para voltar ao menu...');
-        rl.question('', () => menu());
+        rl.question('', () => menu(rl));
     } else {
         console.log('\n=== MISSÕES REGISTRADAS ===');
         missoes.forEach((missao, index) => { 
@@ -16,7 +16,7 @@ function EditarMissao() {
             if (index < 0 || index >= missoes.length) { 
                 console.log('Número inválido');
                 console.log('\nPresione Enter para voltar ao menu');
-                rl.question('', () => menu());
+                rl.question('', () => menu(rl));
             } else { 
                 rl.question('Digite o nome da missão: ', (nome) => {
                     nomeAtual = nome
@@ -31,7 +31,7 @@ function EditarMissao() {
                                 prioridadeAtual = prioridadeParsed;
 
                                 
-                                tripulantesAtuais = []
+                              const tripulantesAtuais = [];
                             
                                 function editarTripulantes() {
                                     rl.question("Adicionar um tripulante: ", (tripulante) => {
@@ -47,7 +47,7 @@ function EditarMissao() {
                                                 missoes[index].tripulantes = [tripulantesAtuais]
 
                                                 console.log('Missão editada com sucesso!');
-                                                menu()
+                                                menu(rl)
                                             }
                                         });
                                     });
